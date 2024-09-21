@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		{% include "components/metadata" %}
+		<title>WillBanksy's Blog</title>
+	</head>
+
+	<body>
+		{% include "components/header" %}
+
+		{% macro post_link(filename, thumbnail, title, description, date) %}
+			<a class="post" href="{{filename}}">
+				<div class="post-thumbnail-container">
+					<img class="post-thumbnail-img" src="{{thumbnail}}" alt="">
+				</div>
+				<div class="post-text-container">
+					<h2 class="post-title">{{title}}</h2>
+					<p class="post-description">{{description}}</p>
+					<div class="post-date-time-container">
+						<img class="theme-img-calendar" src=""> <!-- The JS will fill in the image src -->
+						<p>{{date}}</p>
+					</div>
+				</div>
+			</a>
+		{% endmacro post_link %}
+
+		<main>
+			<h1>Posts</h1>
+			{% for post in posts %}
+				{{ self::post_link(filename=post.filename, thumbnail=post.thumbnail, title=post.title, description=post.description, date=post.date) }}
+			{% endfor %}
+		</main>
+
+		{% include "components/footer" %}
+	</body>
+</html>

@@ -1,0 +1,11 @@
+<footer>
+	<div class="footer-flex-container">
+		<p>&copy; 2024 William Banks</p>
+		<div class="footer-link-list">
+			<a href="https://github.com/Will-Banksy" class="hor-flex-centred-items" target="_blank">
+				<img class="theme-img-github" src=""><!-- The JS will fill in the image src. But wait, what if JS isn't allowed/not available? -->
+				<p style="margin-left: 0.6rem;">My Github</p> <!-- Urgh I don't like inline JS but this is too specific a use case and too little styling for a class -->
+			</a>
+		</div>
+	</div>
+</footer>

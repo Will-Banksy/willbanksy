@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		{% include "components/metadata" %}
+		<title>WillBanksy's Blog | 404 Not Found</title>
+	</head>
+
+	<body>
+		{% include "components/header" %}
+
+		<main>
+			<h1>404 Not Found</h1>
+			<p>This content cannot be found :(</p>
+		</main>
+
+		{% include "components/footer" %}
+	</body>
+</html>

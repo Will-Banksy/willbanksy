@@ -1,0 +1,23 @@
+<header>
+	<div class="header-content-container">
+		<a href="/" class="header-title-container">
+			<img class="theme-img-logo" src="" alt=""></img> <!-- The JS will fill in the image src -->
+			<h1>WillBanksy's<br>Blog</h1>
+		</a>
+		<nav>
+			<ul class="link-list">
+				<a href="/artboard"><li>Artboard</li></a>
+				<a href="/about"><li>About</li></a>
+			</ul>
+		</nav>
+	</div>
+	<button class="switch-theme-button" type="button" onclick="SwitchTheme()">
+		<div class="tempclass" style="background-color: var(--text);"></div>
+		<div class="tempclass" style="background-color: var(--text-intense);"></div>
+		<div class="tempclass" style="background-color: var(--accent);"></div>
+		<div class="tempclass" style="background-color: var(--back-light);"></div>
+		<div class="tempclass" style="background-color: var(--back-mid);"></div>
+		<div class="tempclass" style="background-color: var(--back-dark);"></div>
+		<div class="tempclass" style="background-color: var(--back-vdark);"></div>
+	</button>
+</header>

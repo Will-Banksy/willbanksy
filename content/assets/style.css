@@ -1,0 +1,408 @@
+/*
+
+TODO: Fix the issue of the palette button. Again. *Sigh* the old fix doesn't work, because it knocks the header content to the side, and I can't simply knock it back because that makes a massive gap between the edge and the header content at small viewport widths
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&family=Red+Hat+Text:ital@0;1&display=swap');
+
+@font-face {
+	font-family: 'Edit Undo';
+	src: url('Edit_Undo.ttf');
+}
+
+:root {
+	--text: #fff2b0;
+	--text-intense: #fade4e;
+	--accent: #e43242;
+	--back-light: #a22e41;
+	--back-mid: #752a3f;
+	--back-dark: #441d33;
+	--back-vdark: #1c0c18;
+
+	--transparent: rgba(0, 0, 0, 0);
+
+	color: var(--text);
+	background-color: var(--back-vdark);
+	font-family: 'Red Hat Text', sans-serif;
+	font-size: min(4vw, 12pt);
+}
+
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: inherit;
+	font-size: inherit;
+}
+
+*:focus {
+	outline: 2px dotted var(--accent);
+}
+
+::selection {
+	color: var(--back-vdark);
+	background: var(--accent);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Edit Undo', sans-serif;
+	font-weight: normal;
+}
+
+p {
+	font-family: 'Red Hat Text', sans-serif;
+}
+
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2.25rem; }
+h4 { font-size: 2rem; }
+h5 { font-size: 1.75rem; }
+h6 { font-size: 1.5rem; }
+p { font-size: 1rem; }
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.hor-flex-centred-items {
+	display: flex;
+	align-items: center;
+}
+
+/* End of generic items */
+
+body {
+	background-color: var(--back-dark);
+}
+
+header {
+	background-color: var(--back-light);
+	margin-bottom: 3em;
+	/*box-shadow: 0px 0px 10px var(--back-vdark);*/
+	font-family: 'Edit Undo', sans-serif;
+	color: var(--back-dark);
+	position: relative;
+	padding-right: 1.5rem; /* Space for the theme selector */
+}
+
+.header-content-container {
+	max-width: 1200px;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding: 1.2rem 0.6rem 0.2rem 0.6rem;
+	justify-content: space-between;
+}
+
+.header-content-container a {
+	text-decoration: none;
+	color: var(--back-dark);
+}
+
+.header-content-container a:hover {
+	text-decoration: underline;
+}
+
+.header-title-container {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+}
+
+.header-title-container img {
+	height: 5rem;
+	width: auto;
+	image-rendering: pixelated; /* Some browsers support pixelated and not crisp-edges, some support crisp-edges and not pixelated. So hopefully if we say both, we'll get *fairly* consistent behaviour */
+	image-rendering: crisp-edges;
+	margin-right: 0.6rem;
+}
+
+nav {
+	margin-bottom: 1rem;
+}
+
+.link-list {
+	list-style-type: none;
+	font-size: 2rem;
+	display: flex;
+	align-items: center;
+	/* overflow-x: auto; /* Scrollbars if needed */
+}
+
+.link-list * {
+	flex-shrink: 0;
+	margin-left: 1.5rem;
+}
+
+.link-list *:first-child {
+	margin-left: 0;
+}
+
+.switch-theme-button {
+	position: absolute;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border-radius: 0;
+	right: 0px;
+	top: 0px;
+	height: 100%;
+	width: min(20px, 8%); /* Arbitrary but works nicely */
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+	border: none;
+	outline: none;
+	background-color: var(--back-light);
+}
+
+.switch-theme-button:hover,
+.switch-theme-button:focus {
+	border: 1px solid var(--text);
+}
+
+.switch-theme-button div {
+	position: relative;
+	flex-grow: 1;
+}
+
+main {
+	max-width: 1200px;
+	margin: auto;
+	padding: 0px 0.6rem;
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+	color: var(--text-intense);
+	font-family: 'Red Hat Display', sans-serif;
+	margin-bottom: 0.4rem;
+}
+
+main p {
+	margin-bottom: 1rem;
+}
+
+.post {
+	box-sizing: border-box;
+	display: flex;
+	/*height: 8rem;*/
+	background-color: var(--back-vdark);
+	overflow: hidden;
+	margin-bottom: 1rem;
+	align-items: stretch;
+}
+
+a.post {
+	color: var(--text);
+}
+
+a.post:hover {
+	text-decoration: none;
+}
+
+.post:hover,
+.post:focus {
+	outline: 1px solid var(--text);
+}
+
+.post h2, .post p {
+	margin: 0px;
+}
+
+/* Argh! Need to come up with a decent responsive post link thingy */
+
+.post-thumbnail-container {
+	flex-shrink: 0;
+	position: relative;
+	align-self: center;
+}
+
+/* Tiny screens. Should always do tiny screens as default */
+.post-thumbnail-img {
+	image-rendering: pixelated; /* Some browsers support pixelated and not crisp-edges, some support crisp-edges and not pixelated. So hopefully if we say both, we'll get *fairly* consistent behaviour */
+	image-rendering: crisp-edges;
+	display: block;
+	width: 4rem;
+	height: 4rem;
+}
+
+/* Large screens */
+@media only screen and (min-width: 1024px) {
+	.post-thumbnail-img {
+		width: 8rem;
+		height: 8rem;
+	}
+}
+
+/* Medium-sized screens */
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+	.post-thumbnail-img {
+		width: 8rem;
+		height: 8rem;
+	}
+}
+
+/* Small screens */
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+	.post-thumbnail-img {
+		width: 6rem;
+		height: 6rem;
+	}
+}
+
+.post-thumbnail-container::after {
+	content: "";
+	box-sizing: border-box;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.post-text-container {
+	display: flex;
+	flex-direction: column;
+	margin: 0px 1rem;
+	overflow: hidden;
+	justify-content: space-around;
+}
+
+.post-title,
+.post-description {
+	overflow: hidden;
+	text-overflow: "[...]";
+	/*white-space: nowrap;*/
+}
+
+.post-date-time-container {
+	display: flex;
+	font-style: italic;
+	align-items: center;
+}
+
+.post-date-time-container img {
+	width: min(1rem, 14px); /* The image is 14x14 */
+	height: auto;
+	margin-right: 0.6rem;
+	image-rendering: pixelated; /* Some browsers support pixelated and not crisp-edges, some support crisp-edges and not pixelated. So hopefully if we say both, we'll get *fairly* consistent behaviour */
+	image-rendering: crisp-edges;
+}
+
+/* Doing a bit of responsive web design here, oooooh! */
+.masonry-container {
+	column-count: 1;
+	column-gap: 1rem;
+}
+
+/* Masonry on large screens */
+@media only screen and (min-width: 1024px) {
+	.masonry-container {
+		column-count: 4;
+	}
+}
+
+/* Masonry on medium-sized screens */
+@media only screen and (max-width: 1023px) and (min-width: 768px) {
+	.masonry-container {
+		column-count: 3;
+	}
+}
+
+/* Masonry on small screens */
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+	.masonry-container {
+		column-count: 2;
+	}
+}
+
+.masonry-item {
+	display: inline-block;
+	width: 100%;
+	margin: 0 0 1rem 0;
+	background-color: var(--back-vdark);
+}
+
+.masonry-item div {
+	position: relative;
+	overflow: hidden;
+}
+
+.masonry-item img {
+	width: 100%;
+	height: auto;
+	image-rendering: pixelated; /* Some browsers support pixelated and not crisp-edges, some support crisp-edges and not pixelated. So hopefully if we say both, we'll get *fairly* consistent behaviour */
+	image-rendering: crisp-edges;
+	display: block;
+}
+
+.masonry-item div .masonry-item-caption {
+	position: absolute;
+	bottom: 0;
+	padding: 0.2rem 0.4rem;
+	width: 100%;
+	box-sizing: border-box;
+	background: var(--text);
+	color: var(--back-vdark);
+	transition: 0.3s all cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo */
+	transform: translateY(calc(100% + 1px));
+	font-style: italic;
+	/* font-weight: bold; */
+}
+
+.masonry-item div:hover .masonry-item-caption {
+	transform: none;
+}
+
+footer {
+	border-top: 1px solid var(--back-mid);
+	background-color: var(--back-vdark);
+	margin-top: 5rem
+}
+
+.footer-flex-container {
+	max-width: 1200px;
+	margin: auto;
+	padding: 1rem 0.6rem;
+	font-style: italic;
+	color: var(--back-mid);
+	display: flex;
+	justify-content: space-between;
+}
+
+.footer-link-list {
+	display: flex;
+}
+
+.footer-link-list > * {
+	margin-left: 1rem;
+}
+
+.footer-link-list > *:first-child {
+	margin-left: 0;
+}
+
+.footer-link-list a {
+	color: var(--back-mid);
+}
+
+.footer-link-list img {
+	width: min(1rem, 16px);
+	height: auto;
+}

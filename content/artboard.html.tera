@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		{% include "components/metadata" %}
+		<title>WillBanksy's Blog</title>
+	</head>
+
+	<body>
+		{% include "components/header" %}
+
+		<main>
+			<h1>Artboard</h1>
+			<p>I started off making pixel art using <a href="https://www.piskelapp.com/">Piskel</a> for modding Terraria with tModLoader, now I use <a href="https://www.aseprite.org/">Aseprite</a> for everything. Although, I haven't done much new art for a while.</p>
+			<p>All my sprites are free to use/modify/whatever for any purpose, with credit.</p>
+
+			{% macro artpiece(filename, title) %}
+				<figure class="masonry-item">
+					<div>
+						<img src="{{filename}}" alt="{{title}}">
+						<figcaption class="masonry-item-caption">{{title}}</figcaption>
+					</div>
+				</figure>
+			{% endmacro artpiece %}
+
+			<div class="masonry-container">
+				{% for piece in artpieces %}
+					{{ self::artpiece(filename=piece.filename, title=piece.title) }}
+				{% endfor %}
+			</div>
+		</main>
+
+		{% include "components/footer" %}
+	</body>
+</html>

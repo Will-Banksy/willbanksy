@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		{% include "components/metadata" %}
+		<title>WillBanksy's Blog</title>
+	</head>
+
+	<body>
+		{% include "components/header" %}
+
+		<main>
+			<h1>About</h1>
+			<p>
+				Hello. I'm Will. I like to make stuff. Stuff being mainly to do with code and computers. Rarely nowadays, pixel art.
+			</p>
+			<p>
+				That's all I have to say about myself for now, I'll probably update this page in the future though.
+			</p>
+		</main>
+
+		{% include "components/footer" %}
+	</body>
+</html>
