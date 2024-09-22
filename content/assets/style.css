@@ -4,7 +4,9 @@ TODO: Fix the issue of the palette button. Again. *Sigh* the old fix doesn't wor
 
 */
 
+/* TODO: Optimise font loading */
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&family=Red+Hat+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 @font-face {
 	font-family: 'Edit Undo';
@@ -14,6 +16,7 @@ TODO: Fix the issue of the palette button. Again. *Sigh* the old fix doesn't wor
 :root {
 	--text: #fff2b0;
 	--text-intense: #fade4e;
+	--text-dim: #b4906f;
 	--accent: #e43242;
 	--back-light: #a22e41;
 	--back-mid: #752a3f;
@@ -22,9 +25,13 @@ TODO: Fix the issue of the palette button. Again. *Sigh* the old fix doesn't wor
 
 	--transparent: rgba(0, 0, 0, 0);
 
+	--font-header: 'Edit Undo';
+	--font-headings: 'Red Hat Display';
+	--font-body: 'Source Sans 3';
+
 	color: var(--text);
 	background-color: var(--back-vdark);
-	font-family: 'Red Hat Text', sans-serif;
+	font-family: var(--font-body), sans-serif;
 	font-size: min(4vw, 12pt);
 }
 
@@ -45,14 +52,15 @@ TODO: Fix the issue of the palette button. Again. *Sigh* the old fix doesn't wor
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Edit Undo', sans-serif;
+	font-family: var(--font-headings), sans-serif;
 	font-weight: normal;
 }
 
 p {
-	font-family: 'Red Hat Text', sans-serif;
+	font-family: var(--font-body), sans-serif;
 }
 
+/* TODO: More distinction between headings...? */
 h1 { font-size: 2.75rem; }
 h2 { font-size: 2.5rem; }
 h3 { font-size: 2.25rem; }
@@ -70,6 +78,29 @@ a:hover {
 	text-decoration: underline;
 }
 
+li {
+	margin-left: 1.2rem;
+}
+
+table {
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1rem;
+}
+
+table, th, td {
+	border: 1px solid var(--text-dim);
+}
+
+th, td {
+	padding: 0.2rem 0.4rem;
+}
+
+th {
+	background-color: var(--back-mid);
+}
+
 .hor-flex-centred-items {
 	display: flex;
 	align-items: center;
@@ -85,10 +116,16 @@ header {
 	background-color: var(--back-light);
 	margin-bottom: 3em;
 	/*box-shadow: 0px 0px 10px var(--back-vdark);*/
-	font-family: 'Edit Undo', sans-serif;
+	font-family: var(--font-header), sans-serif;
 	color: var(--back-dark);
 	position: relative;
 	padding-right: 1.5rem; /* Space for the theme selector */
+}
+
+header h1 {
+	/* Need higher specificity */
+	font-family: var(--font-header), sans-serif;
+	margin-right: 2rem;
 }
 
 .header-content-container {
@@ -189,12 +226,37 @@ main h4,
 main h5,
 main h6 {
 	color: var(--text-intense);
-	font-family: 'Red Hat Display', sans-serif;
+	font-family: var(--font-headings), sans-serif;
 	margin-bottom: 0.4rem;
 }
 
 main p {
 	margin-bottom: 1rem;
+}
+
+main li > p {
+	margin: 0px;
+}
+
+main ul li,
+main ol li {
+	margin-bottom: 0.4rem;
+}
+
+main p img {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+main p img {
+	width: 33%;
+	image-rendering: pixelated; /* NOTE: Assumes pixelart */
+	margin-bottom: 1rem;
+}
+
+main p:has(img) { /* :has() may not be supported by some browsers? But it doesn't really matter here */
+	text-align: center;
 }
 
 .post {

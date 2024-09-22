@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		{% include "components/metadata" %}
+		<title>WillBanksy's Blog | {{ post.title }}</title>
+	</head>
+
+	<body>
+		{% include "components/header" %}
+
+		<main>
+			<h1>{{ post.title}}</h1>
+			<p>{{ post.date }}</p>
+			{{ post_body | safe }}
+		</main>
+
+		{% include "components/footer" %}
+	</body>
+</html>

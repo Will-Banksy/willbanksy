@@ -1,8 +1,8 @@
 mod utils;
 
-use std::{error::Error, fs, io::{BufRead, BufReader}};
+use std::{error::Error, fs::{self, File}, io::{BufRead, BufReader, Read}};
 
-use rocket::{catch, catchers, fs::FileServer, get, response::content::RawHtml, routes};
+use rocket::{catch, catchers, fs::FileServer, get, routes};
 use rocket_dyn_templates::{context, Metadata, Template};
 use serde::{Deserialize, Serialize};
 
@@ -25,6 +25,10 @@ struct ArtpieceInfo {
 impl PostInfo {
 	fn from_markdown_file(path: &str) -> Result<PostInfo, Box<dyn Error>> {
 		let mut reader = BufReader::new(fs::File::open(path)?);
+		PostInfo::from_markdown_file_with(&mut reader)
+	}
+
+	fn from_markdown_file_with(reader: &mut BufReader<File>) -> Result<PostInfo, Box<dyn Error>> {
 		let mut buf = String::new();
 		match reader.read_line(&mut buf)? {
 			0 => Err("Error: File empty")?, // EOF
@@ -114,14 +118,25 @@ fn page(page: String, metadata: Metadata) -> Option<Template> {
 }
 
 #[get("/posts/<name>")]
-fn post(name: String) -> Option<RawHtml<String>> {
-	todo!()
+fn post(name: String) -> Option<Template> {
+	let mut reader = BufReader::new(File::open(format!("content/posts/{name}.md")).ok()?);
+	eprintln!("Checkpoint #-2");
+	let info = PostInfo::from_markdown_file_with(&mut reader).ok()?;
+	eprintln!("Checkpoint #-1");
+	let mut md_content = String::new();
+	reader.read_to_string(&mut md_content).ok()?;
+	eprintln!("Checkpoint #0");
+	let html_content = markdown::to_html_with_options(&md_content, &markdown::Options::gfm()).ok()?;
+	Some(Template::render("post", context! {
+		post: info,
+		post_body: html_content
+	}))
 }
 
 #[shuttle_runtime::main]
 async fn main() -> shuttle_rocket::ShuttleRocket {
 	let rocket = rocket::build()
-		.mount("/", routes![index, artboard, page])
+		.mount("/", routes![index, artboard, page, post])
 		.mount("/assets", FileServer::from("content/assets"))
 		.register("/", catchers![not_found])
 		.attach(Template::fairing());

@@ -1087,6 +1087,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "markdown"
+version = "1.0.0-alpha.20"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "911a8325e6fb87b89890cd4529a2ab34c2669c026279e61c26b7140a3d821ccb"
+dependencies = [
+ "unicode-id",
+]
+
+[[package]]
 name = "matchers"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2648,6 +2657,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "08f95100a766bf4f8f28f90d77e0a5461bbdb219042e7679bebe79004fed8d75"
 
 [[package]]
+name = "unicode-id"
+version = "0.3.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10103c57044730945224467c09f71a4db0071c123a0648cc3e818913bde6b561"
+
+[[package]]
 name = "unicode-ident"
 version = "1.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2808,6 +2823,7 @@ dependencies = [
 name = "willbanksy"
 version = "0.1.0"
 dependencies = [
+ "markdown",
  "rocket",
  "rocket_dyn_templates",
  "serde",

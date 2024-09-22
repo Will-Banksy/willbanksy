@@ -11,3 +11,4 @@ tokio = "1.26.0"
 rocket_dyn_templates = { version = "0.2.0", features = [ "tera" ] }
 serde = "1.0.210"
 serde_yml = "0.0.12"
+markdown = "1.0.0-alpha.20"
