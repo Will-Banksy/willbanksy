@@ -7,6 +7,7 @@
 		<nav>
 			<ul class="link-list">
 				<a href="/artboard"><li>Artboard</li></a>
+				<a href="/projects"><li>Projects</li></a>
 				<a href="/about"><li>About</li></a>
 			</ul>
 		</nav>

@@ -16,7 +16,7 @@ TODO: Fix the issue of the palette button. Again. *Sigh* the old fix doesn't wor
 :root {
 	--text: #fff2b0;
 	--text-intense: #fade4e;
-	--text-dim: #b4906f;
+	--text-dim: #b4906f; /* Oops need to add this to themes, also rethink the colour a bit maybe and honestly maybe rethink colours in general */
 	--accent: #e43242;
 	--back-light: #a22e41;
 	--back-mid: #752a3f;
@@ -119,7 +119,8 @@ header {
 	font-family: var(--font-header), sans-serif;
 	color: var(--back-dark);
 	position: relative;
-	padding-right: 1.5rem; /* Space for the theme selector */
+	/* Space for the theme selector */
+	/* padding-right: 1.5rem; */
 }
 
 header h1 {
@@ -136,6 +137,13 @@ header h1 {
 	align-items: center;
 	padding: 1.2rem 0.6rem 0.2rem 0.6rem;
 	justify-content: space-between;
+	/* This disgusting line of CSS is to add padding so the theme switch button doesn't overlap
+	   the nav, but only when necessary so the header isn't off-centre. Doesn't actually work in
+	   a particularly good way honestly */
+	/* padding-right: calc(0.6rem + min(max(1.2rem - (100% - 1200px) / 2, 0px), 1.2rem)); */
+	/* The below works better than the above */
+	padding-left: 1.8rem;
+	padding-right: 1.8rem;
 }
 
 .header-content-container a {
@@ -172,16 +180,20 @@ nav {
 	font-size: 2rem;
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
+	/* Row gap and column gap my beloved */
+	column-gap: 1.4rem;
+	row-gap: 0.4rem;
 	/* overflow-x: auto; /* Scrollbars if needed */
 }
 
-.link-list * {
+.link-list > * {
 	flex-shrink: 0;
-	margin-left: 1.5rem;
 }
 
-.link-list *:first-child {
-	margin-left: 0;
+.link-list li {
+	/* Override default li styling */
+	margin-left: 0px;
 }
 
 .switch-theme-button {
@@ -193,7 +205,7 @@ nav {
 	right: 0px;
 	top: 0px;
 	height: 100%;
-	width: min(20px, 8%); /* Arbitrary but works nicely */
+	width: 1.2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
