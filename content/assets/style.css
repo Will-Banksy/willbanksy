@@ -432,12 +432,14 @@ a.post:hover {
 	padding: 0.2rem 0.4rem;
 	width: 100%;
 	box-sizing: border-box;
-	background: var(--text);
-	color: var(--back-vdark);
+	/* In case color-mix isn't available, --back-vdark will be used */
+	background: var(--back-vdark);
+	background: color-mix(in srgb, var(--back-vdark) 40%, transparent);
+	color: var(--text);
 	transition: 0.3s all cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo */
 	transform: translateY(calc(100% + 1px));
 	font-style: italic;
-	/* font-weight: bold; */
+	font-weight: bold;
 }
 
 .masonry-item div:hover .masonry-item-caption {
