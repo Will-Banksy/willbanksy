@@ -1,6 +1,6 @@
 mod utils;
 
-use std::{error::Error, fs::{self, File}, io::{BufRead, BufReader, Read}};
+use std::{cmp::Ordering, error::Error, fs::{self, File}, io::{BufRead, BufReader, Read}};
 
 use rocket::{catch, catchers, fs::FileServer, get, routes};
 use rocket_dyn_templates::{context, Metadata, Template};
@@ -64,7 +64,7 @@ impl PostInfo {
 
 #[get("/")]
 fn index() -> Template {
-	let posts: Vec<PostInfo> = utils::ls("content/posts")
+	let mut posts: Vec<PostInfo> = utils::ls("content/posts")
 		.expect("[ERROR]: There was a problem reading the content of the content/posts directory")
 		.into_iter()
 		.filter_map(|fname| {
@@ -75,6 +75,8 @@ fn index() -> Template {
 			Some(info)
 		})
 		.collect();
+
+	posts.sort_unstable_by(|p0, p1| p0.date.partial_cmp(&p1.date).unwrap_or(Ordering::Equal).reverse());
 
 	Template::render("index", context! {
 		posts
@@ -126,7 +128,9 @@ fn post(name: String) -> Option<Template> {
 	let mut md_content = String::new();
 	reader.read_to_string(&mut md_content).ok()?;
 	eprintln!("Checkpoint #0");
-	let html_content = markdown::to_html_with_options(&md_content, &markdown::Options::gfm()).ok()?;
+	let html_content = markdown::to_html_with_options(&md_content, &markdown::Options {
+		..markdown::Options::gfm()
+	}).ok()?;
 	Some(Template::render("post", context! {
 		post: info,
 		post_body: html_content

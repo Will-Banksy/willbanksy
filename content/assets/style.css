@@ -60,13 +60,18 @@ p {
 	font-family: var(--font-body), sans-serif;
 }
 
-/* TODO: More distinction between headings...? */
 h1 { font-size: 2.75rem; }
+main > h1::before { content: "# "; color: var(--text); opacity: 50%; }
 h2 { font-size: 2.5rem; }
+main > h2::before { content: "## "; color: var(--text); opacity: 50%; }
 h3 { font-size: 2.25rem; }
+main > h3::before { content: "### "; color: var(--text); opacity: 50%; }
 h4 { font-size: 2rem; }
+main > h4::before { content: "#### "; color: var(--text); opacity: 50%; }
 h5 { font-size: 1.75rem; }
+main > h5::before { content: "##### "; color: var(--text); opacity: 50%; }
 h6 { font-size: 1.5rem; }
+main > h6::before { content: "###### "; color: var(--text); opacity: 50%; }
 p { font-size: 1rem; }
 
 a {
@@ -240,6 +245,7 @@ main h6 {
 	color: var(--text-intense);
 	font-family: var(--font-headings), sans-serif;
 	margin-bottom: 0.4rem;
+	margin-top: 1.4rem;
 }
 
 main p {
@@ -261,9 +267,10 @@ main p img {
 	margin-left: auto;
 }
 
+/* TODO: Figure out how to work with both screenshots and pixelart */
 main p img {
-	width: 33%;
-	image-rendering: pixelated; /* NOTE: Assumes pixelart */
+	height: min(40rem, 100%);
+	max-width: 100%;
 	margin-bottom: 1rem;
 }
 

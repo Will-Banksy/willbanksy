@@ -10,7 +10,11 @@
 
 		<main>
 			<h1>{{ post.title}}</h1>
-			<p>{{ post.date }}</p>
+			<div class="post-date-time-container">
+				<img class="theme-img-calendar" src=""> <!-- The JS will fill in the image src -->
+				<span>{{post.date}}</span>
+			</div>
+			<br>
 			{{ post_body | safe }}
 		</main>
 
