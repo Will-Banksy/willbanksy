@@ -1,7 +1,7 @@
 ---
 title: "Crafting Colour Pickers"
-description: "For my WIP pixel art editor QPix, one thing I wanted to add was a sophisticated colour picker. This post describes my thoughts going through process."
-date: "2024-10-02"
+description: "For my WIP pixel art editor QPix, one thing I wanted to add was a sophisticated colour picker. This post journals my thoughts."
+date: "2024-10-03"
 thumbnail: "default.png"
 ---
 
